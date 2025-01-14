@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantic Search with Filter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Product Semantic Search</h1>
+
+    <form method="POST">
+        <label for="query">Enter your query:</label>
+        <input type="text" name="query" id="query" required>
+
+        <label for="category">Choose category:</label>
+        <select name="category" id="category">
+            <option value="">-- Select Category --</option>
+            {% for category in categories %}
+                <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+        <div class="results">
+            <h3>Top Results:</h3>
+            {% for result in results %}
+                <div class="result-item">
+                    {{ result }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
