@@ -18,13 +18,16 @@ numpy_data = words.to_numpy()
 
 # Function to precompute and save embeddings
 def precompute_cache(data):
-    """This function precomputes the data embedding and saves it."""
+    """This function precomputes the data embedding and saves it, 
+    so that we don't have to embed our data set everytime."""
+    
     pre_encode_data = model.encode(data, convert_to_tensor=True)
     np.save("cached_embeddings", pre_encode_data)
 
 # Load precomputed embeddings from cache
 def load_cache():
     """This function loads the precomputed embedded data."""
+    
     loaded_data = np.load(os.path.join(BASE_DIR, "dataset/cached_embeddings.npz"))
     return loaded_data['embeddings']
 
@@ -41,11 +44,7 @@ def get_top_result(query):
     top_results = [numpy_data[idx] for idx in score_results]
     return top_results
 
-# Function to filter product names based on category
-def get_names(row, target):
-    """Returns product names matching the category."""
-    if row['sub_category'] == target:
-        return row['name']
+# Function to filter product names based on category.
 
 def get_category(target):
     """Filters products by category."""
@@ -54,6 +53,7 @@ def get_category(target):
 
 
 @app.route('/', methods=['GET', 'POST'])
+
 def index():
     categories = products['sub_category'].unique()
     results = []
