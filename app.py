@@ -25,7 +25,8 @@ def precompute_cache(data):
 # Load precomputed embeddings from cache
 def load_cache():
     """This function loads the precomputed embedded data."""
-    return np.load(os.path.join(BASE_DIR, "dataset/cached_embeddings.npy"))
+    loaded_data = np.load(os.path.join(BASE_DIR, "dataset/cached_embeddings.npz"))
+    return loaded_data['embeddings']
 
 data_embeddings = load_cache()
 
