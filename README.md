@@ -18,3 +18,8 @@ showing all the product names in that category.
 4. Run the Flask application
      python app.py
 
+5. Example Searches
+        -> Air conditioners that have 5.0 rating
+        -> backs packs for school
+        -> Air conditioners that has lower price
+
